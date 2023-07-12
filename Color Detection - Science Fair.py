@@ -5,13 +5,21 @@
 import cv2
 import os
 import numpy as np
-
+import pandas as pd
 
 # Capture video feed into an object
 cam = cv2.VideoCapture(0)
 
-# Display current frame of feed
+# Reading CSV file and giving names to each column
+index = ["color","color_name","hex","R","G","B"]
+csv_file = pd.read_csv(colors.csv)
+while True:
+    
+    # Capture the current frame
+    frame  = cam.read()
 
+    # Display current frame
+    cv2.imshow("frame", frame)
 
 # Importing Images Function
 
