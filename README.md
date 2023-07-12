@@ -1,7 +1,4 @@
-# Science-Fair-2024
-All code for Science Fair 2024
+# Science Fair 2024
+All code and files for the program accompanied with the project
 
-
-
-# H1 
-Test
+# Overview of Code
