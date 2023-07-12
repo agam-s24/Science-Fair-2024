@@ -1,4 +1,4 @@
-# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+ # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # Written by Agamveer Singh Sansoe
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
@@ -6,7 +6,11 @@ import cv2
 import os
 import numpy as np
 
+
+# Capture video feed into an object
 cam = cv2.VideoCapture(0)
+
+# Display current frame of feed
 
 
 # Importing Images Function
