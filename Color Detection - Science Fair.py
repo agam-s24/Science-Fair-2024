@@ -11,7 +11,7 @@ import time
 
 
 # ---------------------------------------------------------------------------------------------------------------
-# STARTING A VIDEO CAPTURE
+# STARTING/CHECKING VIDEO CAPTURE
 # ---------------------------------------------------------------------------------------------------------------
 
 
@@ -36,17 +36,24 @@ if not cam.isOpened():
 blue_count = 0
 red_count = 0
 
+
+# Initializes variable with current time minus six secends
+# Ensures first detection will happen immediatly when code starts
 time_function_done = time.time()-6
 
 
-while True:
+# System on (DON'T change)
+sysOn = True
+
+
+while sysOn:
     # Capture frame by frame
     ret, frame = cam.read()
 
     # if frame is read correctly --> ret == True
     if not ret:
         print("Cannot recieve frame (stream ended?). Exiting...")
-        break
+        sysOn = False
 
 
     # Convert colorspace of video capture
@@ -76,10 +83,14 @@ while True:
 
     has_red = np.sum(red_mask)
     
-
-    # Checks if white pixels are on mask and returns string if there is
-    if time_function_done + 5 < time.time():
+    # Checks if current time is greater then time_function_done (elapsed time)
+    # time_function_done needs to be greater then the local time (time.time()) in order for statement to run
+    if (time_function_done + 5) < time.time():
+        
+        # Sets variable with current time
         time_function_done = time.time()
+        
+        # Checks if white pixels are on mask and returns string if there is
         if has_blue > 0:
             print(f"Blue #{blue_count+1} Detected \n\n\n")
             blue_count += 1
@@ -87,9 +98,9 @@ while True:
         if has_red > 0:
             print(f"Red #{red_count+1} Detected\n\n\n")
             red_count += 1
-        
-    # else:
-    #     print("No color is detected")
+            
+        # else:
+        #     print("No color is detected")
 
 
     # cv2.inRange() reutrns a binary mask that we'll pass into the bitwise AND operator
@@ -104,7 +115,7 @@ while True:
 
     # Press q to quit
     if cv2.waitKey(1) == ord('q'):
-        break
+        sysOn = False
 
 
 # Stops video capture
