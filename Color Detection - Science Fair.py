@@ -11,6 +11,8 @@ import cv2
 import os
 import numpy as np
 import pandas as pd
+import time
+
 
 
 # ---------------------------------------------------------------------------------------------------------------
@@ -34,6 +36,12 @@ if not cam.isOpened():
 # ---------------------------------------------------------------------------------------------------------------
 # MASKING A VIDEO CAPTURE TO DETECT COLORS
 # ---------------------------------------------------------------------------------------------------------------
+
+# Count variables
+blue_count = 0
+red_count = 0
+
+time_function_done = time.time()-6
 
 
 while True:
@@ -72,14 +80,25 @@ while True:
     has_blue = np.sum(blue_mask)
 
     has_red = np.sum(red_mask)
+    
 
     # Checks if white pixels are on mask and returns string if there is
-    if has_blue > 0:
-        print("Blue Detected\n\n\n")
-    if has_red > 0:
-        print("Red Detected\n\n\n")
+    if time_function_done + 5 < time.time():
+        time_function_done = time.time()
+        if has_blue > 0:
+            print(f"Blue #{blue_count+1} Detected \n\n\n")
+            blue_count += 1
+        
+        if has_red > 0:
+            print(f"Red #{red_count+1} Detected\n\n\n")
+            red_count += 1
+        
+    # else:
+    #     print("No color is detected")
+
 
     # cv2.inRange() reutrns a binary mask that we'll pass into the bitwise AND operator
+    # cv2.bitwise_and() creates a mask output that can be displayed afterwards
     blue_mask_output = cv2.bitwise_and(frame,frame,mask=blue_mask)
     red_mask_output = cv2.bitwise_and(frame,frame,mask=red_mask)
 
@@ -96,6 +115,12 @@ while True:
 # Stops video capture
 cam.release()
 cv2.destroyAllWindows()
+
+print(f"""
+Video Capture has been stopped.
+Blue count = {blue_count}
+Red count = {red_count}
+""")
 
 
 # ---------------------------------------------------------------------------------------------------------------
