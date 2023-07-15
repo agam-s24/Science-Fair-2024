@@ -3,24 +3,20 @@
 # ---------------------------------------------------------------------------------------------------------------
 
 import cv2
-import os
 import numpy as np
 import pandas as pd
 import time
 
-
-
 # ---------------------------------------------------------------------------------------------------------------
 # STARTING/CHECKING VIDEO CAPTURE
 # ---------------------------------------------------------------------------------------------------------------
-
 
 # Capture video feed into an object
 # Syntax: cv2.VideoCapture(number to specify which camara.. usually one camara which is 0)
 cam = cv2.VideoCapture(0)
 
 # Check if camara is open
-if not cam.isOpened():
+if not cam.isOpened():  
     print("Camara cannot open.. trying to turn on.")
     cam.open()
     if cam.isOpened() == True:
@@ -83,10 +79,12 @@ while sysOn:
 
     has_red = np.sum(red_mask)
     
+
     # Checks if current time is greater then time_function_done (elapsed time)
     # time_function_done needs to be greater then the local time (time.time()) in order for statement to run
+    # Runs color detection every 5 seconds
     if (time_function_done + 5) < time.time():
-        
+
         # Sets variable with current time
         time_function_done = time.time()
         
@@ -127,48 +125,5 @@ Video Capture has been stopped.
 Blue count = {blue_count}
 Red count = {red_count}
 """)
-
-
-# ---------------------------------------------------------------------------------------------------------------
-
-# ---------------------------------------------------------------------------------------------------------------
-
-
-# # Reading CSV file and giving names to each column
-# index = ["color","color_name","hex","R","G","B"]
-# csv_file = pd.read_csv("colors.csv", names=index, header=None)
-# print(csv_file)
-
-# while True:
-    
-#     # Capture the current frame
-#     frame  = cam.read()
-
-#     # Display current frame
-#     cv2.imshow("frame", frame)
-
-# # Importing Images Function
-
-# # We need to filter through a folder directory to find all available images and store them into a list
-# def load_images_from_folder(folder_path):
-#     images = []
-   
-#     for filename in os.listdir(folder_path):    
-
-#         # syntax: os.path.join(folder path, another path if needed, filename) --> needed to join a folder path and the filename 
-#         # example: print(os.path.join("/Users/agam/Desktop", "transcript.txt"))
-#         img = cv2.imread(os.path.join(folder_path,filename))
-
-
-#         # OpenCV2 can detect JPEGs, PNGs, and TIFFs automatically, or else will return a None
-#         # Detect if this img is a JPEG, PNG, or TIFF       
-#         if img is not None:
-#             # Store image into list
-#             images.append(img)  
-#         else:
-
-#             # Alert that the file is invalid
-#             print(f"{filename} is in a invalid format!")
-#             continue
 
 
