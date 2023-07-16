@@ -25,7 +25,7 @@ if not cam.isOpened():
         print("Unsuccessful (camara off?)")
         exit()
 # ---------------------------------------------------------------------------------------------------------------
-# MASKING A VIDEO CAPTURE TO DETECT COLORS
+# MASKING VIDEO CAPTURE TO DETECT COLORS
 # ---------------------------------------------------------------------------------------------------------------
 
 # Count variables
@@ -97,9 +97,6 @@ while sysOn:
             print(f"Red #{red_count+1} Detected\n\n\n")
             red_count += 1
             
-        # else:
-        #     print("No color is detected")
-
 
     # cv2.inRange() reutrns a binary mask that we'll pass into the bitwise AND operator
     # cv2.bitwise_and() creates a mask output that can be displayed afterwards
@@ -114,6 +111,11 @@ while sysOn:
     # Press q to quit
     if cv2.waitKey(1) == ord('q'):
         sysOn = False
+
+
+# ---------------------------------------------------------------------------------------------------------------
+# ENDING VIDEO CAPTURE
+# ---------------------------------------------------------------------------------------------------------------
 
 
 # Stops video capture
