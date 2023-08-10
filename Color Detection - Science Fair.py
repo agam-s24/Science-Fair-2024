@@ -7,6 +7,21 @@ import numpy as np
 import pandas as pd
 import time
 
+
+# ---------------------------------------------------------------------------------------------------------------
+# ASKING USER CONTAINER COLORS
+# ---------------------------------------------------------------------------------------------------------------
+
+containerDay = str(input("Insert the color of the day container: "))
+containerNight = str(input("Insert the color of the night container: "))
+
+# ---------------------------------------------------------------------------------------------------------------
+# ARRAY FOR COLORS
+# ---------------------------------------------------------------------------------------------------------------
+
+
+
+
 # ---------------------------------------------------------------------------------------------------------------
 # STARTING/CHECKING VIDEO CAPTURE
 # ---------------------------------------------------------------------------------------------------------------
@@ -33,7 +48,7 @@ blue_count = 0
 red_count = 0
 
 
-# Initializes variable with current time minus six secends
+# Initializes variable with current time (from when script starts) minus six secends
 # Ensures first detection will happen immediatly when code starts
 time_function_done = time.time()-6
 
@@ -85,18 +100,22 @@ while sysOn:
     # Runs color detection every 5 seconds
     if (time_function_done + 5) < time.time():
 
-        # Sets variable with current time
+        # Sets variable to current time
         time_function_done = time.time()
         
         # Checks if white pixels are on mask and returns string if there is
         if has_blue > 0:
             print(f"Blue #{blue_count+1} Detected \n\n\n")
             blue_count += 1
-        
+            
+            # Run motor system to blue pill cartiage
+
+
         if has_red > 0:
             print(f"Red #{red_count+1} Detected\n\n\n")
             red_count += 1
             
+            # Run motor system to red pill cartiage
 
     # cv2.inRange() reutrns a binary mask that we'll pass into the bitwise AND operator
     # cv2.bitwise_and() creates a mask output that can be displayed afterwards
@@ -129,3 +148,6 @@ Red count = {red_count}
 """)
 
 
+# ---------------------------------------------------------------------------------------------------------------
+#
+# ---------------------------------------------------------------------------------------------------------------
