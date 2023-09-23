@@ -4,14 +4,12 @@ All code and files for the program accompanied with the project
 
 
 
-## Color Detection
+<!-- ## Color Detection
 ![Alt text](colordetection.png)
 
-
-
-- [x] Write the press release
-- [ ] Update the website
-- [ ] Contact the media
+- Detects red and blue colors 
+- Provides a count and alert when detected
+ -->
 
 ## Convert RGB values to HSV
     > import numpy as np
