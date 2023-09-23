@@ -5,7 +5,8 @@ All code and files for the program accompanied with the project
 
 
 ## Color Detection
-![!\[alt text\](colordetection.jpg)](colordetection.png)
+![Alt text](colordetection.png)
+
 
 
 - [x] Write the press release
